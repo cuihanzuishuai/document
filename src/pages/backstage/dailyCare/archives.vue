@@ -136,7 +136,11 @@
                 <div class="dentity">
                   <span>{{item['姓名']}}</span>
                   <span>{{item['职务名称']}}</span>
-                  <img src="../../../assets/images/junzhang.png" alt />
+                  <!-- <img src="../../../assets/images/junzhang.png" alt /> -->
+                  <div class="junxianPic" :style="{background: 'url(' + item['军衔图片'] + ')' + ' cover' + 'no-repeat',
+                                                  backgroundSize: 'cover',
+                                                  backgroundRepeat: 'no-repeat'}"></div>
+                  <!-- <img :src="item['军衔图片']" alt /> -->
                 </div>
                 <div class="detail_info">
                   <img src="../../../assets/images/tx.png" alt />
@@ -170,31 +174,31 @@
                     </ul>
                     <ul class="list_info">
                       <li>
-                        <span>{{item['身份号'] ? item['身份号'] : 暂无}}</span>
+                        <span>{{item['身份号'] ? item['身份号'] : '暂无'}}</span>
                       </li>
                       <li>
-                        <span>{{item['籍贯'] ? item['籍贯'] : 暂无}}</span>
+                        <span>{{item['籍贯'] ? item['籍贯'] : '暂无'}}</span>
                       </li>
                       <li
                         style="width:100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;"
                       >
-                        <span :title="item['部别']">{{item['部别'] ? item['部别'] : 暂无}}</span>
+                        <span :title="item['部别']">{{item['部别'] ? item['部别'] : '暂无'}}</span>
                       </li>
                       <li>
-                        <span>{{item['出生时间'] && item['出生时间'].split('T')[0] ? item['出生时间'] && item['出生时间'].split('T')[0] : 暂无}}</span>
+                        <span>{{item['出生时间'] && item['出生时间'].split('T')[0] ? item['出生时间'] && item['出生时间'].split('T')[0] : '暂无'}}</span>
                       </li>
                       <li>
-                        <span>{{item['入伍时间'] && item['入伍时间'].split('T')[0] ? item['入伍时间'] && item['入伍时间'].split('T')[0] : 暂无}}</span>
+                        <span>{{item['入伍时间'] && item['入伍时间'].split('T')[0] ? item['入伍时间'] && item['入伍时间'].split('T')[0] : '暂无'}}</span>
                       </li>
 
                       <li>
-                        <span>{{item['档案号'] ? item['档案号'] : 暂无}}</span>
+                        <span>{{item['档案号'] ? item['档案号'] : '暂无'}}</span>
                       </li>
                       <li>
-                        <span>{{item['现状'] ? item['现状'] : 暂无}}</span>
+                        <span>{{item['现状'] ? item['现状'] : '暂无'}}</span>
                       </li>
                       <li>
-                        <span>{{item['存放位置'] ? item['存放位置'] : 暂无}}</span>
+                        <span>{{item['存放位置'] ? item['存放位置'] : '暂无'}}</span>
                       </li>
                     </ul>
                   </div>
@@ -755,7 +759,9 @@ export default {
                 item["入伍时间"] =
                   item["入伍时间"] && item["入伍时间"].slice(0, 10);
                 item["技术"] = item["技术"] ? item["技术"] : "暂无";
+                item["军衔图片"] = `http://develop.gangwaninfo.com:9999/__kb/kfile/imageFile/JunXian/${item.军衔文级}.jpg`
                 return item;
+                // `http://develop.gangwaninfo.com:9999/__kb/kfile/imageFile/JunXian/${item.军衔文级}.jpg`
               });
           });
       } else {
@@ -1029,7 +1035,8 @@ export default {
               item["入伍时间"] =
                 item["入伍时间"] && item["入伍时间"].slice(0, 10);
               item["技术"] = item["技术"] ? item["技术"] : "暂无";
-              return item;
+              item["军衔图片"] = `http://develop.gangwaninfo.com:9999/__kb/kfile/imageFile/JunXian/${item.军衔文级}.jpg`
+              return item;  
             });
         });
     },
@@ -1096,6 +1103,7 @@ export default {
               item["入伍时间"] =
                 item["入伍时间"] && item["入伍时间"].slice(0, 10);
               item["技术"] = item["技术"] ? item["技术"] : "暂无";
+              item["军衔图片"] = `http://develop.gangwaninfo.com:9999/__kb/kfile/imageFile/JunXian/${item.军衔文级}.jpg`
               return item;
             });
         });
@@ -1141,6 +1149,7 @@ export default {
               item["入伍时间"] =
                 item["入伍时间"] && item["入伍时间"].slice(0, 10);
               item["技术"] = item["技术"] ? item["技术"] : "暂无";
+              item["军衔图片"] = `http://develop.gangwaninfo.com:9999/__kb/kfile/imageFile/JunXian/${item.军衔文级}.jpg`
               return item;
             });
         });
@@ -1383,6 +1392,16 @@ export default {
                 line-height: 40px;
                 padding: 0 16px;
                 box-sizing: border-box;
+                .junxianPic {
+                  height: 40px;
+                  width: 21px;
+                  transform: rotate(90deg);
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  position: absolute;
+                  top: 0px;
+                  right: 16px;
+                }
                 img {
                   position: absolute;
                   top: 8px;

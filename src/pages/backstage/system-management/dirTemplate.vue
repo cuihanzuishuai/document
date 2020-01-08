@@ -4,7 +4,7 @@
     <div class="choose">
       <div class="left_tree">
         <PositionHorn />
-        <div class="queue">人员来源类别列表</div>
+        <div class="queue">人员来源类别</div>
         <el-tree
           :data="data"
           :props="defaultProps"
@@ -49,6 +49,7 @@
                 node-key="id"
                 highlight-current
                 :props="rightProps"
+                check-on-click-node=true
                 @check="addcheckNode"
                 >
               </el-tree>
@@ -393,7 +394,7 @@ export default {
         padding: 0 16px;
         background:rgba(2,154,254,0.15);
         @include sizing;
-        font-size: 14px;
+        font-size: 15px;
         color: #fff;
       }
       .right_person {
